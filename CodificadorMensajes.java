@@ -23,7 +23,6 @@ public class CodificadorMensajes
      * Mensaje a codificar
      */
     private Mensaje mensajeACodificar;
-
     /**
      * Mensaje codificado
      */
@@ -125,26 +124,27 @@ public class CodificadorMensajes
      * 104, 111, 108 y 97, respectivamente. Su suma es 420, y 420 % 99991 es
      * 420. Luego, el código de inscripción es el arreglo {4, 2, 0}.
      */
-    public int[] generarCodigoEncripcion(String str) 
+    private int[] generarCodigoEncripcion(String str) 
     {
     int suma = 0;
     int resto = 0;
     int i = 0;
     int j;
-    int resultado = 0;
-    int codigoEncripcion[] = new int[str.length()]; //inicializar bien
+    String resultadoFinal;
     while (i < str.length()) {
         suma = str.charAt(i) + suma;
-        resto = suma % 99991;
         i++;
     }
-    resultado = resto;
-    System.out.println("Código de encripción:");
-    for (i = str.length()-1; i >= 0; i--) {
-    codigoEncripcion[i] = resultado % 10;
-    resultado = resultado / 10;
+    resto = suma % 99991;
+    resultadoFinal= resto + "";
+    int codigoEncripcion[] = new int[resultadoFinal.length()];
+    System.out.println("");
+    System.out.println("Codigo de Encripcion:");
+    for (i = resultadoFinal.length(); i > 0; i--) {
+        codigoEncripcion[i-1] = resto % 10;
+        resto = resto / 10;
     }
-    for (j = 1; j < codigoEncripcion.length; j++) {
+    for (j = 0; j < codigoEncripcion.length; j++) {
         System.out.print(codigoEncripcion[j] + " ");
     }
     return codigoEncripcion;
@@ -163,7 +163,7 @@ public class CodificadorMensajes
      */
     private String encriptarCadena(String str, int[] codigo) {
         if (str == null) throw new IllegalArgumentException("Cadena nula");
-        if (codigo == null) throw new IllegalArgumentException("Código inválido");
+        if (codigo == null) throw new IllegalArgumentException("Codigo Invalido");
         String result = "";
         int j = 0;
         for (int i = 0; i < str.length(); i++) {

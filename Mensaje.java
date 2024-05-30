@@ -74,14 +74,15 @@ public class Mensaje
      */
     public void agregarLinea(int pos, String linea) //Metodo implementado
     {
-        // TODO: Implementar este método
-        assert linea != null : "La linea no debe ser nula";
-        if (linea.length() > LONG_MAX_LINEA)
-        throw new IllegalArgumentException("Longitud invalida. La linea no debe tener más de 80 caracteres.");
-        if (!esAscii(linea)) 
-        throw new IllegalArgumentException("La linea a agregar contiene caracteres no ascii.");
+        // TODO: Implementar este metodo
+        if (linea == null)
+            throw new IllegalArgumentException ("La linea no debe ser nula");
+        if (linea.length() > LONG_MAX_LINEA) //Longitud de linea no debe ser mayor qude 80
+            throw new IllegalArgumentException("Longitud invalida. La linea no debe tener mas de 80 caracteres.");
+        if (!esAscii(linea)) //Linea debe ser de tipo Ascii
+            throw new IllegalArgumentException("La linea a agregar contiene caracteres no ascii.");
         if (pos < 0 || pos > cantLineas()) // Si pos == cantLineas() se agrega al final
-        throw new IllegalArgumentException("Posición inválida. La posición debe ser entre 0 y la cantidad de líneas.");
+            throw new IllegalArgumentException("Posicion invalida. La posicion debe ser entre 0 y la cantidad de lineas.");
     
         lineas.add(pos, linea);
     }
@@ -142,14 +143,15 @@ public class Mensaje
      */
     public boolean equals(Mensaje otro) //Metodo implementado 
     {
-        // TODO: Implementar este método sustituyendo la línea debajo, con el código de la implementación
-        assert otro!=null : "Ingrese bien el mensaje";
-        int i=0;
-        while(i<lineas.size()){
-            if(!lineas.get(i).equals(otro.lineas.get(i)) || lineas.size() != otro.lineas.size() ){
-            return false;
+        // TODO: Implementar este metodo sustituyendo la linea debajo, con el codigo de la implementacion
+        if (otro==null)
+            throw new IllegalArgumentException ("Ingrese bien el mensaje");
+        int i = 0;
+        while(i<lineas.size()){ //Mientras que i sea menor que el tama�o de la linea, comparamos los mensajes si son iguales o no
+         if(!lineas.get(i).equals(otro.lineas.get(i)) || lineas.size() != otro.lineas.size() ){
+                return false;
             }
-            i++;
+                i++;
         }
         return true;
     }
@@ -162,9 +164,9 @@ public class Mensaje
     {
         String result = "";
         for (String linea: lineas) {
-            result = result + linea + "\n";
+                result = result + linea + "\n";
         }
-        return result;
+            return result;
     }
     
     /**
@@ -182,7 +184,7 @@ public class Mensaje
             for (int i = 0; i < lineas.size() && ok; i++) {
                 String corriente = lineas.get(i);
                 if (corriente == null || !esAscii(corriente) || corriente.length() > LONG_MAX_LINEA) {
-                    ok = false;
+                     ok = false;
                 }
             }
             return ok;

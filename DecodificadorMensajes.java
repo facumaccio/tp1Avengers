@@ -32,7 +32,6 @@ public class DecodificadorMensajes
      */
     private Mensaje mensajeDecodificado;
     private String msg;
-    
     /**
      * Constructor de la clase DecodificadorMensajes.
      * Inicializa el mensaje a desencriptar/decodificar con el parámetro pasado, 
@@ -59,10 +58,9 @@ public class DecodificadorMensajes
      */
     public void decodificarMensaje() 
     {
-        // TODO: Implementar este método
-        //mensajeADecodificar() = mensaje.obtenerLinea();
+        // TODO: Implementar este metodo
         if(mensajeDecodificado!=null){
-            throw new IllegalStateException("El mensaje ya a sido descodificado");
+            throw new IllegalStateException("El mensaje ya a sido descodificado"); //Excepcion que verifica que el mensaje ya fue codificado
         }
          mensajeDecodificado = new Mensaje();
         for (int i = 0; i < mensajeADecodificar.cantLineas(); i++) {
@@ -99,18 +97,21 @@ public class DecodificadorMensajes
      * @param codigo es el código a utilizar para la desencripción
      */
     private String desencriptarCadena(String str, int[] codigo) {
-        // TODO: Implementar este método, sustituyendo la línea
-        // debajo con el código correspondiente a la funcionalidad
-        assert str!= null && codigo!=null : "No fue ingresado el dato";
+        // TODO: Implementar este método, sustituyendo la linea
+        if (str== null && codigo==null)
+            throw new IllegalArgumentException ("No fue ingresado el dato");
         String result = "";
         int j = 0;
         for (int i = 0; i < str.length(); i++) {
-        char curr = str.charAt(i);
-        char currDesencriptado = (char) ((curr - codigo[j] + 128) % 128);
-        result = result + currDesencriptado;
-        j = (j + 1) % codigo.length;
-    }
-    return result;
+            char curr = str.charAt(i);
+            char currDesencriptado = (char) ((curr - codigo[j]) % 128);
+            if(currDesencriptado < 0){
+                currDesencriptado =+ 128;
+            }
+            result = result + currDesencriptado;
+            j = (j + 1) % codigo.length;
+        }
+        return result;
     }
 
 }
