@@ -3,16 +3,16 @@
 /**
  * Clase CodificadorMensajes: representa una componente capaz de cifrar
  * un mensaje en formato texto. El mensaje a cifrar debe ser un objeto
- * de tipo Mensaje (b√°sicamente, una lista de strings, donde cada string
- * representa una l√≠nea). Se asume que el mensaje es ASCII, es decir, todos
- * los caracteres del mensaje tienen c√≥digos en el rango [0, 127].
- * Si el mensaje a codificar tiene al menos una l√≠nea, el
- * mecanismo de codificaci√≥n/cifrado calcula un c√≥digo de cifrado a partir
- * de la misma. Caso contrario, el c√≥digo de cifrado es irrelevante.
+ * de tipo Mensaje (b·sicamente, una lista de strings, donde cada string
+ * representa una lÌnea). Se asume que el mensaje es ASCII, es decir, todos
+ * los caracteres del mensaje tienen cÛdigos en el rango [0, 127].
+ * Si el mensaje a codificar tiene al menos una lÌnea, el
+ * mecanismo de codificaciÛn/cifrado calcula un cÛdigo de cifrado a partir
+ * de la misma. Caso contrario, el cÛdigo de cifrado es irrelevante.
  * 
- * La codificaci√≥n utiliza una variante de Cifrado Cesar, en el cual el 
- * desplazamiento se basa en una c√≥digo de encripci√≥n m√∫ltiple. V√©ase
- * Cifrado de Vigen√®re para m√°s detalles.
+ * La codificaciÛn utiliza una variante de Cifrado Cesar, en el cual el 
+ * desplazamiento se basa en una cÛdigo de encripciÛn m˙ltiple. VÈase
+ * Cifrado de VigenËre para m·s detalles.
  * 
  * @author N. Aguirre
  * @version 0.1
@@ -35,9 +35,9 @@ public class CodificadorMensajes
 
     /**
      * Constructor de la clase CodificadorMensajes.
-     * Inicializa el mensaje a encriptar/codificar con el par√°metro pasado, e
-     * inicializa el mensaje codificado y el codigo de encripci√≥n en null.
-     * Precondici√≥n: el mensaje msg no puede ser nulo
+     * Inicializa el mensaje a encriptar/codificar con el par·metro pasado, e
+     * inicializa el mensaje codificado y el codigo de encripciÛn en null.
+     * PrecondiciÛn: el mensaje msg no puede ser nulo
      * @param msg es el mensaje a encriptar.
      */
     public CodificadorMensajes(Mensaje msg)
@@ -50,23 +50,22 @@ public class CodificadorMensajes
         codigoEncripcion = null;
     }
 
-    /**
+     /**
      * Encripta el mensaje. El mensaje no debe estar encriptado.
-     * Precondici√≥n: El mensaje a√∫n no fue cifrado (i.e., el campo mensajeCodificado es null).
+     * PrecondiciÛn: El mensaje a˙n no fue cifrado (i.e., el campo mensajeCodificado es null).
      */
     public void codificarMensaje() 
     {
-        if (mensajeCodificado != null) {
-            // mensaje ya codificado
-            throw new IllegalStateException("El mensaje ya est√° codificado");
+        if (mensajeCodificado != null) { 
+            throw new IllegalStateException("El mensaje ya est√° codificado"); 
         }
-        if (mensajeACodificar.cantLineas() == 0) {
-            mensajeCodificado = new Mensaje();
-            codigoEncripcion = new int[0];
+        if (mensajeACodificar.cantLineas() == 0) { 
+            mensajeCodificado = new Mensaje(); 
+            codigoEncripcion = new int[0]; 
         }
         else {
             mensajeCodificado = new Mensaje();
-            codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0));
+            codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0)); 
             for (int i = 0; i < mensajeACodificar.cantLineas(); i++) {
                 String curr = mensajeACodificar.obtenerLinea(i);
                 String currCodificada = encriptarCadena(curr, codigoEncripcion);
@@ -75,11 +74,11 @@ public class CodificadorMensajes
         }
     }
 
-    /**
+     /**
      * Cambia el mensaje a codificar.
-     * Precondici√≥n: el nuevo mensaje no puede ser null.
-     * Postcondici√≥n: el mensaje a codificar se actualiza, y se vuelve el objeto
-     * a un estado de "a√∫n no codificado".
+     * PrecondiciÛn: el nuevo mensaje no puede ser null.
+     * PostcondiciÛn: el mensaje a codificar se actualiza, y se vuelve el objeto
+     * a un estado de "a˙n no codificado".
      * @param msg es el mensaje a codificar.
      */
     public void cambiarMensaje(Mensaje msg)
@@ -91,9 +90,9 @@ public class CodificadorMensajes
         codigoEncripcion = null;
     }
 
-    /**
+     /**
      * Retorna el mensaje ya codificado/cifrado.
-     * Precondici√≥n: el mensaje debe haber sido codificado previamente (i.e., se debe haber llamado a codificarMensaje()).
+     * PrecondiciÛn: el mensaje debe haber sido codificado previamente (i.e., se debe haber llamado a codificarMensaje()).
      * Postcondicion: se retorna el mensaje cifrado/codificado.
      * @return el mensaje cifrado.
      */
@@ -104,10 +103,10 @@ public class CodificadorMensajes
     }
 
     /**
-     * Retorna el c√≥digo de cifrado.
-     * Precondici√≥n: el mensaje debe haber sido codificado previamente (i.e., se debe haber llamado a codificarMensaje()).
-     * Postcondicion: se retorna el c√≥digo obtenido para el cifrado.
-     * @return el c√≥digo de cifrado.
+     * Retorna el cÛdigo de cifrado.
+     * PrecondiciÛn: el mensaje debe haber sido codificado previamente (i.e., se debe haber llamado a codificarMensaje()).
+     * Postcondicion: se retorna el cÛdigo obtenido para el cifrado.
+     * @return el cÛdigo de cifrado.
      */
     public int[] obtenerCodigoEncripcion() {
         if (mensajeCodificado == null)
@@ -116,56 +115,65 @@ public class CodificadorMensajes
     }
 
     /**
-     * Computa el c√≥digo de encripci√≥n correspondiente a una cadena str.
-     * Para calcular el c√≥digo de encripci√≥n se suman los c√≥digos ASCII de str, 
-     * y se divide por 99991 (el n√∫mero primo de 5 d√≠gitos m√°s grande). Los 
-     * d√≠gitos del resto de la divisi√≥n constituyen el c√≥digo de encripci√≥n.
-     * Ej: para la cadena "hola", los c√≥digos ascii de los caracteres son
+     * Computa el cÛdigo de encripciÛn correspondiente a una cadena str.
+     * Para calcular el cÛdigo de encripciÛn se suman los cÛdigos ASCII de str, 
+     * y se divide por 99991 (el n˙mero primo de 5 dÌgitos m·s grande). Los 
+     * dÌgitos del resto de la divisiÛn constituyen el cÛdigo de encripciÛn.
+     * Ej: para la cadena "hola", los cÛdigos ascii de los caracteres son
      * 104, 111, 108 y 97, respectivamente. Su suma es 420, y 420 % 99991 es
-     * 420. Luego, el c√≥digo de inscripci√≥n es el arreglo {4, 2, 0}.
+     * 420. Luego, el cÛdigo de inscripciÛn es el arreglo {4, 2, 0}.
      */
     private int[] generarCodigoEncripcion(String str) 
     {
+    //Inicializamos nuestras variables locales
     int suma = 0;
     int resto = 0;
     int i = 0;
     int j;
     String resultadoFinal;
+    //Este bucle itera de 1 en 1, y suma los valores del codigo Ascii de cada caracter de la cadena
     while (i < str.length()) {
         suma = str.charAt(i) + suma;
         i++;
     }
     resto = suma % 99991;
     resultadoFinal= resto + "";
+    //Se crea un arreglo para guardar el codigo de encripcion del tamaÒo de la cadena
     int codigoEncripcion[] = new int[resultadoFinal.length()];
     System.out.println("");
     System.out.println("Codigo de Encripcion:");
+    // Llena el arreglo codigoEncripcion con los dÌgitos del resto
     for (i = resultadoFinal.length(); i > 0; i--) {
         codigoEncripcion[i-1] = resto % 10;
         resto = resto / 10;
     }
+    //Imprime el codigo de encripcion
     for (j = 0; j < codigoEncripcion.length; j++) {
         System.out.print(codigoEncripcion[j] + " ");
     }
+    //Retorna el codigo de encripcion
     return codigoEncripcion;
     }
 
-    /**
-     * Encripta una cadena, dado un c√≥digo num√©rico. Se usan los d√≠gitos del c√≥digo
+     /**
+     * Encripta una cadena, dado un cÛdigo numÈrico. Se usan los dÌgitos del cÛdigo
      * para reemplazar cada caracter de la cadena por el caracter correspondiente a 
-     * "trasladar" el mismo el n√∫mero de lugares que indica el c√≥digo. El c√≥digo tiene
-     * m√∫ltiples valores: se usa el primero para el primer caracter, el segundo para el segundo,
-     * y as√≠ sucesivamente. Si se agota el c√≥digo, se vuelve al comienzo del mismo, hasta
+     * "trasladar" el mismo el n˙mero de lugares que indica el cÛdigo. El cÛdigo tiene
+     * m˙ltiples valores: se usa el primero para el primer caracter, el segundo para el segundo,
+     * y asÌ sucesivamente. Si se agota el cÛdigo, se vuelve al comienzo del mismo, hasta
      * encriptar toda la cadena.
-     * Precondici√≥n: tanto str como codigo no deben ser nulos.
+     * PrecondiciÛn: tanto str como codigo no deben ser nulos.
      * @param str es la cadena a encriptar
-     * @param codigo es el c√≥digo a utilizar para la encripci√≥n
+     * @param codigo es el cÛdigo a utilizar para la encripciÛn
      */
     private String encriptarCadena(String str, int[] codigo) {
-        if (str == null) throw new IllegalArgumentException("Cadena nula");
-        if (codigo == null) throw new IllegalArgumentException("Codigo Invalido");
+        if (str == null) // Verifica si la cadena es nula y lanza una excepciÛn si lo es
+            throw new IllegalArgumentException("Cadena nula");
+        if (codigo == null)  // Verifica si el cÛdigo es nulo y lanza una excepciÛn si lo es
+            throw new IllegalArgumentException("Codigo Invalido");
         String result = "";
         int j = 0;
+        //Bucle para recorrer cada caracter de str y encripta los digitos
         for (int i = 0; i < str.length(); i++) {
             char curr = str.charAt(i);
             char currEncriptado = (char) ((curr + codigo[j]) % 128);

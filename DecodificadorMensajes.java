@@ -3,15 +3,15 @@ import java.util.List;
 
 /**
  * Clase DecodificadorMensajes: representa una componente capaz de descifrar
- * un mensaje en formato texto, dado el mensaje y el c√≥digo usado para la 
- * encripci√≥n. El mensaje a descifrar/decodificar debe ser un objeto
- * de tipo Mensaje (b√°sicamente, una lista de strings, donde cada string
- * representa una l√≠nea). Se asume que el mensaje es ASCII, es decir, todos
- * los caracteres del mensaje tienen c√≥digos en el rango [0, 127].
+ * un mensaje en formato texto, dado el mensaje y el cÛdigo usado para la 
+ * encripciÛn. El mensaje a descifrar/decodificar debe ser un objeto
+ * de tipo Mensaje (b·sicamente, una lista de strings, donde cada string
+ * representa una lÌnea). Se asume que el mensaje es ASCII, es decir, todos
+ * los caracteres del mensaje tienen cÛdigos en el rango [0, 127].
  * 
- * La codificaci√≥n/decodificaci√≥n utiliza una variante de Cifrado Cesar, en 
- * el cual el desplazamiento se basa en una c√≥digo de encripci√≥n m√∫ltiple. 
- * V√©ase Cifrado de Vigen√®re para m√°s detalles.
+ * La codificaciÛn/decodificaciÛn utiliza una variante de Cifrado Cesar, en 
+ * el cual el desplazamiento se basa en una cÛdigo de encripciÛn m˙ltiple. 
+ * VÈase Cifrado de VigenËre para m·s detalles.
  * 
  * @author N. Aguirre
  * @version 0.1
@@ -23,7 +23,7 @@ public class DecodificadorMensajes
      */
     private Mensaje mensajeADecodificar;
     /**
-     * C√≥digo a utilizar
+     * CÛdigo a utilizar
      */
     private int[] codigoEncripcion;
 
@@ -34,18 +34,18 @@ public class DecodificadorMensajes
     private String msg;
     /**
      * Constructor de la clase DecodificadorMensajes.
-     * Inicializa el mensaje a desencriptar/decodificar con el par√°metro pasado, 
-     * junto con el c√≥digo de desencripci√≥n. 
-     * Precondici√≥n: tanto el mensaje msg como el c√≥digo codigo no pueden ser nulos
+     * Inicializa el mensaje a desencriptar/decodificar con el par·metro pasado, 
+     * junto con el cÛdigo de desencripciÛn. 
+     * PrecondiciÛn: tanto el mensaje msg como el cÛdigo codigo no pueden ser nulos
      * @param msg es el mensaje a desencriptar.
-     * @param codigo es el c√≥digo de desencripci√≥n.
+     * @param codigo es el cÛdigo de desencripciÛn.
      */
     public DecodificadorMensajes(Mensaje msg, int[] codigo)
     {
         if (msg == null)
             throw new IllegalArgumentException("Mensaje nulo");
         if (codigo == null)
-            throw new IllegalArgumentException("C√≥digo inv√°lido.");
+            throw new IllegalArgumentException("CÛdigo inv·lido.");
         mensajeADecodificar = msg;
         codigoEncripcion = codigo;
         mensajeDecodificado = null;
@@ -53,7 +53,7 @@ public class DecodificadorMensajes
 
     /**
      * Desencripta el mensaje. El mensaje no debe estar desencriptado.
-     * Precondici√≥n: El mensaje a√∫n no fue descifrado (i.e., el campo 
+     * PrecondiciÛn: El mensaje a˙n no fue descifrado (i.e., el campo 
      * mensajeDecodificado es null).
      */
     public void decodificarMensaje() 
@@ -73,28 +73,28 @@ public class DecodificadorMensajes
     }
     /**
      * Retorna el mensaje ya decodificado/descifrado.
-     * Precondici√≥n: el mensaje debe haber sido decodificado previamente (i.e., 
+     * PrecondiciÛn: el mensaje debe haber sido decodificado previamente (i.e., 
      * se debe haber llamado a decodificarMensaje()).
      * Postcondicion: se retorna el mensaje descifrado/decodificado.
      * @return el mensaje descifrado.
      */
     public Mensaje obtenerMensajeDecodificado() {
         if (mensajeDecodificado == null)
-            throw new IllegalStateException("Mensaje a√∫n no decodificado");
+            throw new IllegalStateException("Mensaje a˙n no decodificado");
         return mensajeDecodificado;
     }
 
     /**
-     * Desencripta una cadena, dado un c√≥digo num√©rico. Se usan los d√≠gitos del c√≥digo
+     * Desencripta una cadena, dado un cÛdigo num√©rico. Se usan los dÌgitos del cÛdigo
      * para reemplazar cada caracter de la cadena por el caracter correspondiente a 
-     * "trasladar" el mismo el n√∫mero de lugares que indica el c√≥digo, en sentido inverso
-     * al de encripci√≥n (es decir, se resta el c√≥digo al caracter). El c√≥digo tiene
-     * m√∫ltiples valores: se usa el primero para el primer caracter, el segundo para el 
-     * segundo, y as√≠ sucesivamente. Si se agota el c√≥digo, se vuelve al comienzo del mismo, 
+     * "trasladar" el mismo el n˙mero de lugares que indica el cÛdigo, en sentido inverso
+     * al de encripciÛn (es decir, se resta el cÛdigo al caracter). El cÛdigo tiene
+     * m˙ltiples valores: se usa el primero para el primer caracter, el segundo para el 
+     * segundo, y asÌ sucesivamente. Si se agota el cÛdigo, se vuelve al comienzo del mismo, 
      * hasta desencriptar toda la cadena.
-     * Precondici√≥n: tanto str como codigo no deben ser nulos.
+     * PrecondiciÛn: tanto str como codigo no deben ser nulos.
      * @param str es la cadena a desencriptar
-     * @param codigo es el c√≥digo a utilizar para la desencripci√≥n
+     * @param codigo es el cÛdigo a utilizar para la desencripciÛn
      */
     private String desencriptarCadena(String str, int[] codigo) {
         // TODO: Implementar este m√©todo, sustituyendo la linea

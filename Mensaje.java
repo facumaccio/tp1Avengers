@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 /**
  * Clase Mensaje: representa un mensaje en formato texto. 
- * El texto estÃ¡ almacenado en una lista de strings, donde cada
- * elemento de la lista representa una lÃ­nea (renglÃ³n) del mensaje.
- * Ninguna lÃ­nea excede los 80 caracteres (81 considerando el fin de
- * lÃ­nea implÃ­cito al final de cada lÃ­nea). Los mensajes sÃ³lo
- * contienen caracteres ASCII (es decir, el cÃ³digo ASCII de cada 
+ * El texto está almacenado en una lista de strings, donde cada
+ * elemento de la lista representa una línea (renglón) del mensaje.
+ * Ninguna línea excede los 80 caracteres (81 considerando el fin de
+ * línea implícito al final de cada línea). Los mensajes sólo
+ * contienen caracteres ASCII (es decir, el código ASCII de cada 
  * caracter del mensaje es menor a 128).
  * 
  * @author N. Aguirre
@@ -15,18 +15,18 @@ import java.util.ArrayList;
 public class Mensaje
 {
     /**
-     * Longitud mÃ¡xima de lÃ­nea del mensaje
+     * Longitud máxima de línea del mensaje
      */
     public static final int LONG_MAX_LINEA = 80;
     
     /**
-     * lÃ­neas del mensaje
+     * líneas del mensaje
      */ 
     private ArrayList<String> lineas;
 
     /**
      * Constructor por defecto de la clase Mensaje().
-     * Crea un mensaje vacÃ­o.
+     * Crea un mensaje vacío.
      */
     public Mensaje()
     {
@@ -43,34 +43,34 @@ public class Mensaje
     }
     
     /**
-     * Agrega una nueva lÃ­nea al final del mensaje.
-     * PrecondiciÃ³n: la lÃ­nea a agregar no debe ser null,
-     * sÃ³lo puede contener caracteres ascii, y 
+     * Agrega una nueva línea al final del mensaje.
+     * Precondición: la línea a agregar no debe ser null,
+     * sólo puede contener caracteres ascii, y 
      * su longitud debe ser menor o igual a 80.
-     * PostcondiciÃ³n: la lÃ­nea 'linea' se agrega al final 
-     * de la lista de lÃ­neas.
-     * @param linea es la lÃ­nea a agregar.
+     * Postcondición: la línea 'linea' se agrega al final 
+     * de la lista de líneas.
+     * @param linea es la línea a agregar.
      */
     public void agregarLinea(String linea)
     {
         if (linea == null)
             throw new IllegalArgumentException("La linea a agregar no debe ser null.");
         if (linea.length() > LONG_MAX_LINEA)
-            throw new IllegalArgumentException("Longitud invalida. La linea no debe tener mÃ¡s de 80 caracteres.");
+            throw new IllegalArgumentException("Longitud invalida. La linea no debe tener más de 80 caracteres.");
         if (!esAscii(linea)) 
             throw new IllegalArgumentException("La linea a agregar contiene caracteres no ascii.");
         lineas.add(linea);
     }
     
     /**
-     * Agrega una nueva lÃ­nea al mensaje, en una posiciÃ³n especÃ­fica.
-     * PrecondiciÃ³n: la lÃ­nea a agregar no debe ser null,
-     * sÃ³lo puede contener caracteres ascii, y 
+     * Agrega una nueva línea al mensaje, en una posición específica.
+     * Precondición: la línea a agregar no debe ser null,
+     * sólo puede contener caracteres ascii, y 
      * su longitud debe ser menor o igual a 80.
-     * La posiciÃ³n debe estar entre 0 y la cantidad de lÃ­neas del mensaje
-     * PostcondiciÃ³n: la lÃ­nea 'linea' se agrega a la lista de lÃ­neas, en la posiciÃ³n indicada.
-     * @param linea es la lÃ­nea a agregar.
-     * @param pos es la posiciÃ³n en la cual se desea agregar la lÃ­nea.
+     * La posición debe estar entre 0 y la cantidad de líneas del mensaje
+     * Postcondición: la línea 'linea' se agrega a la lista de líneas, en la posición indicada.
+     * @param linea es la línea a agregar.
+     * @param pos es la posición en la cual se desea agregar la línea.
      */
     public void agregarLinea(int pos, String linea) //Metodo implementado
     {
@@ -88,37 +88,37 @@ public class Mensaje
     }
     
     /**
-     * Elimina la lÃ­nea de una posiciÃ³n determinada del mensaje.
-     * PrecondiciÃ³n: pos debe estar entre cero y longitud (numero de lÃ­neas) menos uno del mensaje.
-     * @param pos es la posiciÃ³n (Ã­ndice) de la lÃ­nea a eliminar.
+     * Elimina la línea de una posición determinada del mensaje.
+     * Precondición: pos debe estar entre cero y longitud (numero de líneas) menos uno del mensaje.
+     * @param pos es la posición (índice) de la línea a eliminar.
      */
     public void eliminarLinea(int pos)
     {
         if (pos < 0 || pos >= cantLineas())
-            throw new IllegalArgumentException("PosiciÃ³n invÃ¡lida. No existe lÃ­nea con esa posiciÃ³n.");
+            throw new IllegalArgumentException("Posición inválida. No existe línea con esa posición.");
         lineas.remove(pos);
     }
     
     /**
-     * Retorna la lÃ­nea de una posiciÃ³n determinada del mensaje.
-     * PrecondiciÃ³n: pos debe estar entre cero y longitud (numero de lÃ­neas) menos uno del mensaje.
-     * @param pos es la posiciÃ³n (Ã­ndice) de la lÃ­nea a retornar.
-     * @return la lÃ­nea en la posiciÃ³n (Ã­ndice) indicada.
+     * Retorna la línea de una posición determinada del mensaje.
+     * Precondición: pos debe estar entre cero y longitud (numero de líneas) menos uno del mensaje.
+     * @param pos es la posición (índice) de la línea a retornar.
+     * @return la línea en la posición (índice) indicada.
      */
     public String obtenerLinea(int pos)
     {
         if (pos < 0 || pos >= cantLineas())
-            throw new IllegalArgumentException("PosiciÃ³n invÃ¡lida. No existe lÃ­nea con esa posiciÃ³n.");
+            throw new IllegalArgumentException("Posición inválida. No existe línea con esa posición.");
         return lineas.get(pos);
     }
     
     
     /**
-     * Comprueba si una cadena estÃ¡ compuesta exclusivamente de caracteres ASCII.
-     * Los caracteres ASCII tienen cÃ³digo entre 0 y 127.
-     * PrecondiciÃ³n: la lÃ­nea a chequear no debe ser null.
+     * Comprueba si una cadena está compuesta exclusivamente de caracteres ASCII.
+     * Los caracteres ASCII tienen código entre 0 y 127.
+     * Precondición: la línea a chequear no debe ser null.
      * @param linea es la linea a chequear.
-     * @return true ssi la cadena linea estÃ¡ compuesta exclusivamente de caracteres ASCII.
+     * @return true si la cadena linea está compuesta exclusivamente de caracteres ASCII.
      */
     public boolean esAscii(String linea)
     {
@@ -135,11 +135,11 @@ public class Mensaje
     
     /**
      * Comprueba si un mensaje es igual a otro mensaje.
-     * Un mensaje es igual a otro si tiene el mismo nÃºmero de lÃ­neas, y cada
-     * lÃ­nea de cada mensaje coincide.
-     * PrecondiciÃ³n: otro debe ser distinto de null.
+     * Un mensaje es igual a otro si tiene el mismo número de líneas, y cada
+     * línea de cada mensaje coincide.
+     * Precondición: otro debe ser distinto de null.
      * @param otro es el mensaje con el cual comparar el mensaje actual.
-     * @return true ssi el mensaje es igual a otro (el parÃ¡metro).
+     * @return true si el mensaje es igual a otro (el parámetro).
      */
     public boolean equals(Mensaje otro) //Metodo implementado 
     {
@@ -157,7 +157,7 @@ public class Mensaje
     }
     
     /**
-     * Genera una representaciÃ³n de cadena de caracteres del mensaje completo.
+     * Genera una representación de cadena de caracteres del mensaje completo.
      * @return una cadena conteniendo el mensaje completo.
      */
     public String toString()
@@ -170,9 +170,9 @@ public class Mensaje
     }
     
     /**
-     * Invariante de clase Mensaje. Chequea que la lista no sea nula, y todas sus lÃ­neas
+     * Invariante de clase Mensaje. Chequea que la lista no sea nula, y todas sus líneas
      * cumplan con las restricciones de longitud y contenido.
-     * @return true ssi el mensaje no es nulo, ninguna de sus lineas es nula, y todas son 
+     * @return true si el mensaje no es nulo, ninguna de sus lineas es nula, y todas son 
      * ascii, de hasta 80 caracteres.
      */
     public boolean repOK() 
